@@ -9,21 +9,19 @@ Kittens have been disappearing across the neighbourhood and suspected abduction.
 Git clone the project 
 
 ```bash
- $ https://github.com/sumakommajosyula/find-missing-cats.git
+git clone https://github.com/sumakommajosyula/find-missing-cats.git
 ```
 Install the dependcies of the application with npm
 
 ```bash
- $ npm install
+ npm install
 ```
-
-
     
 ## Usage
 
 Run the application
 ```javascript
-$ npm start
+npm start
 ```
 
 ## API Reference
@@ -42,11 +40,11 @@ $ npm start
 
 To run tests, run the following command
 ```javascript
-$ npm run test
+npm run test
 ```
 Get the test coverage report
 ```javascript
-$  npm run test:coverage
+npm run test:coverage
 ```
 
 
