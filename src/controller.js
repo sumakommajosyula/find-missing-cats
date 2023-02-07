@@ -2,7 +2,8 @@
  * File Description : This controller file is used to find the missing cats. 
  * Author : Suma K
  */
-const { verifyCordinates } = require('./forensic-services')
+/* eslint-disable no-undef */
+const { verifyCordinates } = require('./forensic-services');
 const winstonLogger = require('./logger');
 const logger = winstonLogger(__filename);
 
@@ -40,7 +41,7 @@ const displace = (loc) => {
             return { x: --loc.x };
         }
     }
-}
+};
 
 /**
  * Fn: Changes the facing or moves based on the next direction from the forensics API 
@@ -52,7 +53,7 @@ const turnOrDisplace = (currLoc, nextDir) => {
     return nextDir === 'forward' ?
         { ...currLoc, ...displace(currLoc) }
         : { ...currLoc, ...turn(currLoc.facing, nextDir) };
-}
+};
 
 /**
  * Fn: Locates the coordinates of missing cats
@@ -63,7 +64,7 @@ const findMissingCats = (async (req, res) => {
     const { emailAddress } = req.body;
     const { directionsData: { directions } } = req;
 
-    logger.info({ 'Directions in request': directions })
+    logger.info({ 'Directions in request': directions });
 
     if (directions.includes('forward')) {
         const initialLoc = { facing: 0, x: 0, y: 0 };
@@ -78,11 +79,25 @@ const findMissingCats = (async (req, res) => {
         let missingCatsLocation = await verifyCordinates(emailAddress, missingCats);
 
         logger.info('Find missing cats API executed sucessfully');
-        res.status(200).json({ status: true, locationCordinates: missingCats, 'message': missingCatsLocation.data.message })
+        res.status(200).json({
+            status: true,
+            locationCordinates: {
+                x: missingCats.x,
+                y: missingCats.y,
+            },
+            'message': missingCatsLocation.data.message
+        });
     } else {
-        logger.info(`No 'forward' direction found in directions API response`)
-        res.status(200).json({ status: true, locationCordinates: missingCats, message: 'Cats are right behind you!' })
+        logger.info(`No 'forward' direction found in directions API response`);
+        res.status(200).json({
+            status: true,
+            locationCordinates: {
+                x: missingCats.x,
+                y: missingCats.y,
+            },
+            message: 'Cats are right behind you!'
+        });
     }
 });
 
-module.exports = { findMissingCats, turnOrDisplace, displace, turn }
+module.exports = { findMissingCats, turnOrDisplace, displace, turn };

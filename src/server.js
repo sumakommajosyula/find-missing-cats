@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const missingCatsRouter = require('./router');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 4000;
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,6 +27,7 @@ app.use((req, res, next) => {
 });
 
 // error handler middleware
+// eslint-disable-next-line no-unused-vars
 app.use((error, req, res, next) => {
   res.status(error.status || 500).send({
     error: {
@@ -37,5 +38,5 @@ app.use((error, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`App is Listening on port : ${port}`)
-})
+  console.log(`App is Listening on port : ${port}`);
+});

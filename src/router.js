@@ -16,6 +16,6 @@ router.post('/locateMissingCats',
     (req, res, next) => getDirections(req, res, next),
     (req, res, next) => directionValidator(req, res, next),
     (req, res) => findMissingCats(req, res)
-)
+);
 
 module.exports = router;

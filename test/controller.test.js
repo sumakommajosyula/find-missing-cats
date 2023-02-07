@@ -2,7 +2,7 @@
  * File Description : This test file is used to test all the functions used in controller file
  * Author : Suma K
  */
-const controllerTest = require('../src/controller');
+const { turnOrDisplace, displace } = require('../src/controller');
 
 describe(`Testing 'turns' function`, () => {
     test("Facing North & turns left - changes direction to West", () => {
@@ -78,4 +78,20 @@ describe(`Testing 'turnOrDisplace' function`, () => {
         var result = controllerTest.turnOrDisplace({ facing: 3, x: 2, y: 0 }, 'forward');
         expect(result).toStrictEqual({ facing: 3, x: 1, y: 0 });
     })
+
+    /* To Do: 
+    test("Check if displace is called", () => {
+        // jest.spyOn(controllerTest, 'displace').mockImplementation(() => {});
+        // controllerTest.displace = jest.fn().mockReturnValue({})
+        jest.mock('../src/controller', () => {
+            const defaultImport = jest.requireActual('../src/controller');
+            return {
+                ...defaultImport,
+                displace: jest.fn().mockReturnValue({})
+            };
+        })
+        turnOrDisplace({ facing: 3, x: 2, y: 0 }, 'forward');
+        expect(displace).toHaveBeenCalled();
+    })
+    */
 })

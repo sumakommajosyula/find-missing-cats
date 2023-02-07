@@ -22,10 +22,10 @@ const getDirections = async (req, res, next) => {
         req.directionsData = data;
         next();
     } catch (error) {
-        logger.debug({ 'Error in directions API': error })
-        res.status(500).json({ status: false, message: 'Error in invoking directions API' })
+        logger.debug({ 'Error in directions API': error });
+        res.status(500).json({ status: false, message: 'Error in invoking directions API' });
     }
-}
+};
 
 /**
  * Fn: Checks if the cats are found at the derived location coordinates 
@@ -35,10 +35,10 @@ const getDirections = async (req, res, next) => {
  */
 const verifyCordinates = async (email, loc) => {
     try {
-        return await axios.get(`${baseURL}/${email}/${locationURL}/${loc.x}/${loc.y}`)
+        return await axios.get(`${baseURL}/${email}/${locationURL}/${loc.x}/${loc.y}`);
     } catch (error) {
-        logger.debug({ 'Error in directions API': error })
+        logger.debug({ 'Error in directions API': error });
     }
-}
+};
 
-module.exports = { getDirections, verifyCordinates }
+module.exports = { getDirections, verifyCordinates };
