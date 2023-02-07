@@ -2,7 +2,7 @@
  * File Description : This test file is used to test all the functions used in controller file
  * Author : Suma K
  */
-const { turnOrDisplace, displace } = require('../src/controller');
+const controllerTest = require('../src/controller');
 
 describe(`Testing 'turns' function`, () => {
     test("Facing North & turns left - changes direction to West", () => {
